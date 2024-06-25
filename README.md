@@ -1,2 +1,13 @@
-# React_Refactoring
-Vue to React refactoring
+
+
+
+
+
+## 리펙토링 목표 및 기대효과
+- Atomic Design 패턴
+  - 새로운 사람이 들어왔을때 해당 프로젝트 구조를 설명할수 있는가?를 중점으로 사용
+- SCSS
+  -css in css가 실제 개발할때 어떤 느낌인지 경험
+- Reudx
+  - Pinia는 양방향 전역상태관리도구인데, Reudx는 단방향 전역상태관리도구이다. 둘의 차이점을 경험해볼 것이다.
+-  React 감 익히기  
