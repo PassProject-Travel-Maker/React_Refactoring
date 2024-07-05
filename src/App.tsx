@@ -4,7 +4,7 @@ function App() {
   
   return (
     <>
-    <button>가나다라마</button>
+    <button>가나다라마바</button>
     <Header/>
     <div>{ `${process.env.REACT_APP_NAME}`}</div>
     </>
