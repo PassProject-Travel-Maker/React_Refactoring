@@ -6,6 +6,7 @@ function App() {
     <>
     <div>하이하이하이</div>
     <Header/>
+    <div>{ `${process.env.REACT_APP_NAME}`}</div>
     </>
   );
 }

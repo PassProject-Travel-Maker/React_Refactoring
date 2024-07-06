@@ -1,0 +1,9 @@
+version: "3"
+services:
+  react-app:
+  # -it 옵션을 위해 사용됨 (표준입출력)
+    # stdin_open: true
+    # tty : true
+    build:  # docker build .
+      context: .
+      dockerfile : Dockerfile.dev
