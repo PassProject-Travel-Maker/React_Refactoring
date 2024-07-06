@@ -4,7 +4,7 @@ function App() {
   
   return (
     <>
-    <div>하이하이</div>
+    <div>하이하이하이</div>
     <Header/>
     </>
   );
