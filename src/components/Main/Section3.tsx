@@ -2,7 +2,7 @@ import React from 'react'
 import { ReactComponent as Grid } from 'img/grid.svg';
 import { ReactComponent as Img1 } from 'img/section1.svg';
 import { ReactComponent as Img2 } from 'img/section2.svg';
-export default function Section3() {
+const Section3 =()=> {
   return (
       <div className="section3-content">
     <div className="section3-title_box">
@@ -15,3 +15,4 @@ export default function Section3() {
   </div>
   )
 }
+export default React.memo(Section3)

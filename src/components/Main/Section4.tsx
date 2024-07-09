@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 
 import { ReactComponent as Arrow } from 'img/arrow.svg';
 import talk1 from 'img/main/talk1.png';
-export default function Section4() {
+const Section4 = () => {
   return (
     <div className="section4-content">
     <img className="section4-section1" src={talk1} alt="이미지"/>
@@ -20,3 +20,5 @@ export default function Section4() {
   </div>
   )
 }
+
+export default React.memo(Section4);

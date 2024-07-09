@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 import { ReactComponent as Arrow } from 'img/arrow.svg';
 import Card1 from 'img/main/window.png';
 import Card2 from 'img/main/laptop-poses.png';
-export default function Section1() {
+const Section1 =() =>{
     
   return (
     <>
@@ -27,3 +27,4 @@ export default function Section1() {
     </>
   )
 }
+export default React.memo(Section1);

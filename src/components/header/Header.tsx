@@ -9,7 +9,7 @@ export default function Header() {
         <div className='header_left'>
             <Logo/>
             <Title/>
-        </div>
+    </div>
 
     <div className="header_right">
       <Button text="Sign in" classname="sign-in-button"/>

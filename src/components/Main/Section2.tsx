@@ -1,6 +1,6 @@
 import React from 'react'
 import { ReactComponent as Phone } from 'img/phone.svg';
-export default function Section2() {
+const Section2 = () => {
   return (
     <div className="section2-content">
     <div className="section2-title_box">
@@ -13,3 +13,4 @@ export default function Section2() {
   </div>
   )
 }
+export default React.memo(Section2);
