@@ -1,0 +1,49 @@
+.mainview{
+    &-content {
+        width: 100%;
+        height: 100%;
+        /* background-color: blueviolet; */
+        position: relative;
+      }  
+      &-card1 {
+        position: absolute;
+        top: 15%;
+        right: 17%;
+        z-index: 5;
+      }
+      &-card2 {
+        position: absolute;
+        bottom : 0;
+        right: 7%;
+         z-index: 10;
+      }
+      &-title {
+        font-size: 58px;
+        position: absolute;
+        top: 40%;
+        left: 15%;
+        font-weight: 900;
+      }
+      &-span {
+        font-size: 16px;
+        line-height: 26px;
+        font-weight: normal;
+        color: #52525b;
+      }
+      
+      &-button {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 6px;
+        margin-top: 10px;
+        width: 155px;
+        height: 48px;
+        background-color: #f7ce46;
+        color: #0f172a;
+        font-weight: 700;
+        border-radius: 5px;
+        font-family: "Roboto", sans-serif;
+        border: none;
+      }
+}

@@ -9,7 +9,6 @@ export default function Header() {
         <div className='header_left'>
             <Logo/>
             <Title/>
-            <div>가나</div>
         </div>
 
     <div className="header_right">

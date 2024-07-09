@@ -4,6 +4,7 @@
 // @import 'base/*';
 // @import 'layout/*';
 @import 'components/header';
+@import 'components/mainview';
 // @import 'pages/*';
 // @import 'themes/*';
 @import 'tailwindcss/base';
@@ -27,7 +28,7 @@ body {
 }
 html,
 body,
-#app {
+#root {
   width: 100%;
   height: 100%;
 }
