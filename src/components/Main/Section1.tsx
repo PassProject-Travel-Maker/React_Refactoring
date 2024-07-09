@@ -21,8 +21,8 @@ export default function Section1() {
         </button>
       </Link>
     </div>
-    <img className="w-1/3 section1-card1"  data-aos="fade-zoom-in" data-aos-duration="1500" src={Card1} />
-    <img className="w-1/3 section1-card2"  data-aos="fade-left" data-aos-duration="1500" src={Card2} />
+    <img className="w-1/3 section1-card1"  data-aos="fade-zoom-in" data-aos-duration="1500" alt='카드1'src={Card1} />
+    <img className="w-1/3 section1-card2"  data-aos="fade-left" data-aos-duration="1500" alt='카드2' src={Card2} />
   </div>
     </>
   )
