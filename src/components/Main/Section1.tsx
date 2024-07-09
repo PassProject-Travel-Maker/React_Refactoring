@@ -14,7 +14,7 @@ const Section1 =() =>{
       <br />
       <span className='section1-span'>당신만의 맞춤 여행 경로로 더 특별한 추억을 만드세요.</span>
       <br />
-      <Link to="">
+      <Link to="map">
         <button
           className="px-3 py-1.5 text-sm font-semibold shadow-sm bg-yellow-400 hover:bg-yellow-500 section1-button">
           Get Started <Arrow />

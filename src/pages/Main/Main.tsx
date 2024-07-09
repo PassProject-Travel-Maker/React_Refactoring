@@ -1,5 +1,5 @@
 import React, { useCallback, useEffect, useRef, useState } from 'react';
-import {ScrollTo} from '../../components/main/Hook/Scroll'
+import { ScrollTo } from '../../components/main/Hook/Scroll'
 import Section1 from 'components/main/Section1';
 import Section2 from 'components/main/Section2';
 import Section3 from 'components/main/Section3';
