@@ -7,6 +7,12 @@
     top: 0;
     z-index: 10;
   }
+.header-realtive{
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 .header_right {
     margin-left: auto;
     margin-right: 30px;

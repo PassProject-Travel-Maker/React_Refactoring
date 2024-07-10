@@ -4,9 +4,10 @@ import { ReactComponent as Logo } from 'img/icon.svg';
 import { ReactComponent as Title } from 'img/title.svg';
 import Button from './atomic/Button';
 import { Link } from 'react-router-dom';
-export default function Header() {
+
+export default function RealtiveHeader() {
   return (
-    <div className='header'>
+    <div className='header-realtive'>
         <div className='header_left'>
             <Link to="/"><Logo/></Link>
             <Link to="/"><Title/></Link>

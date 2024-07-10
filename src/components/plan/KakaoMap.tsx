@@ -1,9 +1,9 @@
 import React from 'react'
-import { Map, MapMarker } from 'react-kakao-maps-sdk';
-export default function KaKaoMap() {
+import {Map,MapMarker} from 'react-kakao-maps-sdk'
+export default function KakaoMap() {
   return (
     <>
-     <Map // 지도를 표시할 Container
+    <Map // 지도를 표시할 Container
       id="map"
       center={{
         // 지도의 중심좌표
@@ -25,7 +25,6 @@ export default function KaKaoMap() {
         }}
       />
     </Map>
-    
     </>
   )
 }
