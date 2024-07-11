@@ -6,6 +6,9 @@ export default function Plan() {
    <div className="plan-container">
   <div className="plan-left">
      <PlanForm />
+     <div className='test'>
+       <input />
+     </div>
     {/* <CategoryView/> */}
   </div>
   <div className="plan-right">
