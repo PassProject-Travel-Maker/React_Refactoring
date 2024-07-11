@@ -1,10 +1,9 @@
+import { useQuery} from '@tanstack/react-query';
 import { getAttractionApi, getGugunApi, getSidoApi } from 'components/apis/mapApi';
 import { gugun, searchData, sido } from 'components/types/map';
-import React,{useEffect,useRef,useState} from 'react'
+import React,{useRef,useState} from 'react'
 
 export default function MapCategorySearch() {
-    const [sidos, setSidos] = useState<sido[]>([]);
-    const [guguns, setGuguns] = useState<gugun[]>([]);
     const gugunRef = useRef<HTMLSelectElement>(null);
     const attarctionIdRef = useRef<HTMLSelectElement>(null); // select tag 상태 감시 변수
     const [searchData, setSearchData] = useState<searchData>({
@@ -13,21 +12,12 @@ export default function MapCategorySearch() {
         attarctionId: "0",
         keyword: "",
     });
-
-
-    const getSido = async () => {
-        const response = await getSidoApi();
-        console.log(response);
-        setSidos(response.data)
-    };
-    const getGugun = async (sidoCode : string) => {
-        const response = await getGugunApi(sidoCode);
-        console.log(response);
-        setGuguns(response.data);
-      };
+    const { data : sidos } = useQuery<sido[]>({ queryKey: ['todos'], queryFn: getSidoApi,staleTime : Infinity })
+    //쿼리 키가 없으면 인식을 못하네 -> 이부분 공부를 더 해야할듯
+    const { data : guguns } = useQuery<gugun[]>({ queryKey: ['guguns', searchData.sidoCode], queryFn: ()=> getGugunApi(searchData.sidoCode), enabled : !!searchData.sidoCode})
 
     const onSelect = (e : React.ChangeEvent<HTMLSelectElement>)=>{
-        getGugun(e.target.value);
+      console.log("하이")
         setSearchData((prev)=> ({
           ...prev,
           sidoCode : e.target.value
@@ -43,11 +33,6 @@ export default function MapCategorySearch() {
       const response = await getAttractionApi(searchData);
       console.log(response.data);
     }
-
-
-    useEffect( ()=>{
-        getSido();
-    },[])
   return (
    <>
     <form className="grid grid-cols-10 gap-2 my-5 mx-5" role="search">
@@ -58,15 +43,12 @@ export default function MapCategorySearch() {
         onChange={onSelect}
       >
         <option value="0">검색 할 지역 선택</option>
-        {sidos.map((sido) => (
+        {sidos?.map((sido) => (
             <option key={sido.sidoCode} value={sido.sidoCode}>
               {sido.sidoName}
             </option>
           )
         )}
-        {/* <option v-for="sido in sidos" :key={sido.sidoCode} value={sido.sidoCode}>
-          {{ sido.sidoName }}
-        </option> */}
       </select>
       <select
         id="search-gugun"
@@ -75,7 +57,7 @@ export default function MapCategorySearch() {
         ref={gugunRef}
       >
         <option value="0">구군 선택</option>
-        {guguns.map((gugun) => (
+        {guguns?.map((gugun) => (
             <option key={gugun.gugunCode} value={gugun.gugunCode}>
               {gugun.gugunName}
             </option>

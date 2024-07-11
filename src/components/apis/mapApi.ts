@@ -1,14 +1,14 @@
-import { searchData } from 'components/types/map';
+import { gugun, searchData, sido } from 'components/types/map';
 import {api} from './core'
 
-export const getSidoApi = async() =>{
+export const getSidoApi = async():Promise<sido[]> =>{
     const response = await api.get('map/sido');
-    return response;
+    return response.data;
 }
 
-export const getGugunApi = async(sidoCode : string) =>{
+export const getGugunApi = async(sidoCode : string): Promise<gugun[]> =>{
     const response = await api.get(`map/gugun/${sidoCode}`);
-    return response;
+    return response.data;
 }
 
 export const getCategoryApi = async(sidoCode : string) =>{

@@ -1,5 +1,4 @@
 import Category from 'components/plan/Category';
-import PlanForm from 'components/plan/PlanForm';
 import React from 'react'
 
 export default function Plan() {
