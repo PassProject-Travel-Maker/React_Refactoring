@@ -1,10 +1,12 @@
-import { getGugunApi, getSidoApi } from 'components/apis/mapApi';
+import { getAttractionApi, getGugunApi, getSidoApi } from 'components/apis/mapApi';
 import { gugun, searchData, sido } from 'components/types/map';
-import React,{useEffect,useState} from 'react'
+import React,{useEffect,useRef,useState} from 'react'
 
 export default function MapCategorySearch() {
     const [sidos, setSidos] = useState<sido[]>([]);
     const [guguns, setGuguns] = useState<gugun[]>([]);
+    const gugunRef = useRef<HTMLSelectElement>(null);
+    const attarctionIdRef = useRef<HTMLSelectElement>(null); // select tag 상태 감시 변수
     const [searchData, setSearchData] = useState<searchData>({
         sidoCode: "0",
         gugunCode: "0",
@@ -24,8 +26,22 @@ export default function MapCategorySearch() {
         setGuguns(response.data);
       };
 
-    const onSelect = ()=>{
-        getGugun(searchData.sidoCode);
+    const onSelect = (e : React.ChangeEvent<HTMLSelectElement>)=>{
+        getGugun(e.target.value);
+        setSearchData((prev)=> ({
+          ...prev,
+          sidoCode : e.target.value
+        }));
+    }
+    const HandleMapSearh = async()=>{
+      setSearchData((prev)=>({
+        ...prev,
+        gugunCode : gugunRef.current ? gugunRef.current.value : prev.gugunCode,
+        attarctionId : attarctionIdRef.current ? attarctionIdRef.current.value : prev.attarctionId,
+        keyword : "",
+      }))
+      const response = await getAttractionApi(searchData);
+      console.log(response.data);
     }
 
 
@@ -56,7 +72,7 @@ export default function MapCategorySearch() {
         id="search-gugun"
         className="form-select me-2 col-span-3 border rounded-md"
         name="gugunCode"
-        v-model="searchData.gugunCode"
+        ref={gugunRef}
       >
         <option value="0">구군 선택</option>
         {guguns.map((gugun) => (
@@ -67,7 +83,7 @@ export default function MapCategorySearch() {
         )}
       </select>
 
-      <select id="search-content-id" className="form-select me-2 col-span-3 border rounded-md" v-model="searchData.attarctionId">
+      <select id="search-content-id" className="form-select me-2 col-span-3 border rounded-md" ref={attarctionIdRef}>
         <option value="0" selected>관광지 유형</option>
         <option value="12">관광지</option>
         <option value="14">문화시설</option>
@@ -79,7 +95,7 @@ export default function MapCategorySearch() {
         <option value="39">음식점</option>
       </select>
       <button id="" 
-      className="btn btn-outline-success col-span-1 bg-slate-300 text-black rounded-md hover:bg-amber-300 py-2" type="button">
+      className="btn btn-outline-success col-span-1 bg-slate-300 text-black rounded-md hover:bg-amber-300 py-2" type="button" onClick={HandleMapSearh}>
       검색
       </button>
     </form>

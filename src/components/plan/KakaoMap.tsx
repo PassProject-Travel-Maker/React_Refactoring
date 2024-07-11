@@ -1,8 +1,10 @@
 import React from 'react'
 import {Map,MapMarker} from 'react-kakao-maps-sdk'
+import MapCategorySearch from './MapCategorySearch'
 export default function KakaoMap() {
   return (
     <>
+    <MapCategorySearch/>
     <Map // 지도를 표시할 Container
       id="map"
       center={{

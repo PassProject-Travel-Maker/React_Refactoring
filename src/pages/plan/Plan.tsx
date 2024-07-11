@@ -7,7 +7,6 @@ export default function Plan() {
   return (
     <>
    <div className="plan-container">
-    <PlanForm/>
   <div className="plan-left">
     <Category/>
   </div>
