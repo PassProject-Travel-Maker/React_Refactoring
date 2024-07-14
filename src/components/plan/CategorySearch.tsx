@@ -1,6 +1,6 @@
 import { useQuery} from '@tanstack/react-query';
 import { getAttractionApi, getGugunApi, getSidoApi } from 'components/apis/mapApi';
-import { gugun, searchData, sido } from 'types/map';
+import { gugun, sido } from 'types/map';
 import React,{useRef,useState} from 'react'
 import { useMapStore } from 'store/map';
 
@@ -27,7 +27,7 @@ export default function CategorySearch() {
     }
   return (
    <>
-    <form className="grid grid-cols-10 gap-2 my-5 mx-5" role="search">
+    <form className="grid grid-cols-10 gap-2 my-5 mx-5 h-10" role="search">
       <select
         id="search-area"
         className="form-select me-2 col-span-3 border rounded-md"

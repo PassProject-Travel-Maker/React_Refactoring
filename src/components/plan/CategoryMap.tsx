@@ -2,6 +2,7 @@ import React from 'react'
 import {Map,MapMarker} from 'react-kakao-maps-sdk'
 import CategorySearch from './CategorySearch'
 import { useMapStore } from 'store/map'
+import AreaItem from './AreaItem';
 export default function CategoryMap() {
   const {areas,latitude,longitude}  = useMapStore();
   return (
@@ -15,7 +16,6 @@ export default function CategoryMap() {
         lng: longitude,
       }}
       style={{
-       
         width: "95%",
         height: "80%",
       }}
@@ -30,8 +30,12 @@ export default function CategoryMap() {
         }}
       />
       ))}
-      
     </Map>
+    <ul className='kakaomap-ul "divide-y divide-gray-100"' >
+      {areas.map( (area,index)=>(
+          <AreaItem area={area}/>
+      ))}
+    </ul>
     </div>
   )
 }
