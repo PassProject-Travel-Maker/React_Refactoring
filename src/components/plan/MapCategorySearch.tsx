@@ -2,6 +2,7 @@ import { useQuery} from '@tanstack/react-query';
 import { getAttractionApi, getGugunApi, getSidoApi } from 'components/apis/mapApi';
 import { gugun, searchData, sido } from 'components/types/map';
 import React,{useRef,useState} from 'react'
+import { useMapStore } from 'store/map';
 
 export default function MapCategorySearch() {
     const gugunRef = useRef<HTMLSelectElement>(null);
@@ -12,12 +13,10 @@ export default function MapCategorySearch() {
         attarctionId: "0",
         keyword: "",
     });
-    const { data : sidos } = useQuery<sido[]>({ queryKey: ['todos'], queryFn: getSidoApi,staleTime : Infinity })
-    //쿼리 키가 없으면 인식을 못하네 -> 이부분 공부를 더 해야할듯
-    const { data : guguns } = useQuery<gugun[]>({ queryKey: ['guguns', searchData.sidoCode], queryFn: ()=> getGugunApi(searchData.sidoCode), enabled : !!searchData.sidoCode})
-
+    const { data : sidos } = useQuery<sido[]>({ queryKey: ['todos'], queryFn: getSidoApi, staleTime : Infinity })
+    const { data : guguns } = useQuery<gugun[]>({ queryKey: ['guguns', searchData.sidoCode], queryFn: ()=> getGugunApi(searchData.sidoCode), enabled : searchData.sidoCode !== "0"})
+    const {setArea} = useMapStore();
     const onSelect = (e : React.ChangeEvent<HTMLSelectElement>)=>{
-      console.log("하이")
         setSearchData((prev)=> ({
           ...prev,
           sidoCode : e.target.value
@@ -31,7 +30,7 @@ export default function MapCategorySearch() {
         keyword : "",
       }))
       const response = await getAttractionApi(searchData);
-      console.log(response.data);
+      setArea(response.data);
     }
   return (
    <>
@@ -41,6 +40,7 @@ export default function MapCategorySearch() {
         className="form-select me-2 col-span-3 border rounded-md"
         name="sidoCode"
         onChange={onSelect}
+        defaultValue="0"
       >
         <option value="0">검색 할 지역 선택</option>
         {sidos?.map((sido) => (
@@ -55,6 +55,7 @@ export default function MapCategorySearch() {
         className="form-select me-2 col-span-3 border rounded-md"
         name="gugunCode"
         ref={gugunRef}
+        defaultValue="0"
       >
         <option value="0">구군 선택</option>
         {guguns?.map((gugun) => (
@@ -65,8 +66,8 @@ export default function MapCategorySearch() {
         )}
       </select>
 
-      <select id="search-content-id" className="form-select me-2 col-span-3 border rounded-md" ref={attarctionIdRef}>
-        <option value="0" selected>관광지 유형</option>
+      <select id="search-content-id" className="form-select me-2 col-span-3 border rounded-md" ref={attarctionIdRef} defaultValue="0">
+        <option value="0">관광지 유형</option>
         <option value="12">관광지</option>
         <option value="14">문화시설</option>
         <option value="15">축제공연행사</option>

@@ -6,14 +6,17 @@ import PlanForm from './PlanForm'
 export default function Category() {
 const categories = [
         {
+          id : 1,
           name: '카테고리 별 검색',
           type : 'category'
         },
         {
+          id : 2,
           name: '일반 검색',
           type : 'search'
         },
         {
+          id : 3,
           name: 'GPT에게 물어보기',
           type : 'gpt'
         },
@@ -25,8 +28,8 @@ const categories = [
     <div className="w-full px-2 mt-10 sm:px-0" style={{ width: '100%' }}>
         <TabGroup>
           <TabList className="inline-flex rounded-xl">
-            {categories.map(({ name }) => (
-              <Tab key={name} as="div">
+            {categories.map(({ name,id }) => (
+              <Tab key={id} as="div">
               {({ selected }) => (
                 <button
                   className={`
@@ -44,8 +47,8 @@ const categories = [
           </TabList>
           <TabPanels>
             {
-                categories.map( ({type})=>(
-                    <TabPanel className="">
+                categories.map( ({type,id})=>(
+                    <TabPanel className="" key={id}>
                         { type === 'category' && <KakaoMap /> }
                         { type === 'search' && <KakaoMapSearch /> }
                         { type === 'gpt' && <GPT /> }
