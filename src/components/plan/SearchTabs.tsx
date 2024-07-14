@@ -1,5 +1,5 @@
 import { Tab, TabGroup, TabList, TabPanel, TabPanels } from '@headlessui/react'
-import KakaoMap from './KakaoMap'
+import CategoryMap from './CategoryMap'
 import KakaoMapSearch from './KakaoMapSearch'
 import GPT from './GPT'
 import PlanForm from './PlanForm'
@@ -49,7 +49,7 @@ const categories = [
             {
                 categories.map( ({type,id})=>(
                     <TabPanel className="" key={id}>
-                        { type === 'category' && <KakaoMap /> }
+                        { type === 'category' && <CategoryMap /> }
                         { type === 'search' && <KakaoMapSearch /> }
                         { type === 'gpt' && <GPT /> }
                     </TabPanel>

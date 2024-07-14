@@ -1,4 +1,4 @@
-import Category from 'components/plan/Category';
+import SearchTabs from 'components/plan/SearchTabs';
 import React from 'react'
 
 export default function Plan() {
@@ -7,7 +7,7 @@ export default function Plan() {
     <>
    <div className="plan-container">
   <div className="plan-left">
-    <Category/>
+    <SearchTabs/>
   </div>
   <div className="plan-right">
   {/* <PlanView/> */}

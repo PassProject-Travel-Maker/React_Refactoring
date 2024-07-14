@@ -1,36 +1,29 @@
 import { useQuery} from '@tanstack/react-query';
 import { getAttractionApi, getGugunApi, getSidoApi } from 'components/apis/mapApi';
-import { gugun, searchData, sido } from 'components/types/map';
+import { gugun, searchData, sido } from 'types/map';
 import React,{useRef,useState} from 'react'
 import { useMapStore } from 'store/map';
 
-export default function MapCategorySearch() {
+export default function CategorySearch() {
     const gugunRef = useRef<HTMLSelectElement>(null);
-    const attarctionIdRef = useRef<HTMLSelectElement>(null); // select tag 상태 감시 변수
-    const [searchData, setSearchData] = useState<searchData>({
-        sidoCode: "0",
-        gugunCode: "0",
-        attarctionId: "0",
-        keyword: "",
-    });
+    const attarctionIdRef = useRef<HTMLSelectElement>(null);
+    const [sidoCode,setSidoCode] = useState<string>("");
     const { data : sidos } = useQuery<sido[]>({ queryKey: ['todos'], queryFn: getSidoApi, staleTime : Infinity })
-    const { data : guguns } = useQuery<gugun[]>({ queryKey: ['guguns', searchData.sidoCode], queryFn: ()=> getGugunApi(searchData.sidoCode), enabled : searchData.sidoCode !== "0"})
-    const {setArea} = useMapStore();
+    const { data : guguns } = useQuery<gugun[]>({ queryKey: ['guguns', sidoCode], queryFn: ()=> getGugunApi(sidoCode), enabled : sidoCode !== "0"})
+    const {setArea,computeAreaCenter} = useMapStore();
     const onSelect = (e : React.ChangeEvent<HTMLSelectElement>)=>{
-        setSearchData((prev)=> ({
-          ...prev,
-          sidoCode : e.target.value
-        }));
+      setSidoCode(e.target.value);
     }
     const HandleMapSearh = async()=>{
-      setSearchData((prev)=>({
-        ...prev,
-        gugunCode : gugunRef.current ? gugunRef.current.value : prev.gugunCode,
-        attarctionId : attarctionIdRef.current ? attarctionIdRef.current.value : prev.attarctionId,
+      const searchData = {
+        sidoCode: sidoCode,
+        gugunCode : gugunRef.current ? gugunRef.current.value : "0",
+        attarctionId : attarctionIdRef.current ? attarctionIdRef.current.value : "0",
         keyword : "",
-      }))
+      }
       const response = await getAttractionApi(searchData);
       setArea(response.data);
+      computeAreaCenter(response.data);
     }
   return (
    <>

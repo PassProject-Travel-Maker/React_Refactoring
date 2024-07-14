@@ -1,4 +1,4 @@
-import { gugun, searchData, sido } from 'components/types/map';
+import { gugun, searchData, sido } from 'types/map';
 import {api} from './core'
 
 export const getSidoApi = async():Promise<sido[]> =>{
